@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "keymap_uk.h"
 
 /*
  * Physical shape:
@@ -41,6 +42,8 @@ enum layers {
 #define NAV_NEXT LALT(KC_RGHT)
 #define TAB_NEXT LCTL(KC_TAB)
 #define TAB_PREV LCS(KC_TAB)
+#define TAB_OPEN LCTL(KC_T)
+#define TAB_CLSE LCTL(KC_W)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
@@ -59,21 +62,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOLS] = LAYOUT(
                KC_GRV, S(KC_1), S(KC_2), S(KC_3),       S(KC_4), S(KC_5),       S(KC_6), S(KC_7), S(KC_8),    S(KC_9),    S(KC_0),    KC_EQL,
-              _______, _______, _______, _______,       _______, _______,       KC_LEFT, KC_DOWN, KC_UP,      KC_RGHT,    S(KC_MINS), KC_NUHS,
+              _______, _______, KC_LSFT, KC_LGUI,       KC_LALT, KC_LCTL,       KC_LEFT, KC_DOWN, KC_UP,      KC_RGHT,    S(KC_MINS), KC_NUHS,
               _______, _______, _______, _______,       _______, _______,       KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), KC_NUBS,    _______,
               _______,                   _______, MO(_FUNCTION), _______,       _______, _______, KC_DEL,                             _______
     ),
 
     [_NUMPAD] = LAYOUT(
                KC_ESC, _______, _______, _______, _______, _______,     XXXXXXX, KC_7, KC_8,    KC_9, S(KC_EQL), KC_EQL,
-        MO(_FUNCTION), KC_LCTL, KC_LSFT, KC_LGUI, KC_LALT, _______,     XXXXXXX, KC_4, KC_5,    KC_6, KC_MINS,   S(KC_NUHS),
+        MO(_FUNCTION), _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL,     XXXXXXX, KC_4, KC_5,    KC_6, KC_MINS,   S(KC_NUHS),
               _______, _______, _______, _______, _______, _______,     XXXXXXX, KC_1, KC_2,    KC_3, KC_SLSH,   _______,
               _______,                   _______, _______, _______,     _______, KC_0, _______,                  _______
     ),
 
     [_FUNCTION] = LAYOUT(
-              _______, _______,  _______,  _______,  _______,  _______,       _______, KC_F7,  KC_F8,   KC_F9, KC_F11,    KC_F12,
-              _______, _______, NAV_PREV, TAB_PREV, TAB_NEXT, NAV_NEXT,       _______, KC_F4,  KC_F5,   KC_F6, KC_PIPE,   XXXXXXX,
+              _______, _______, TAB_CLSE,  _______,  _______, TAB_OPEN,       _______, KC_F7,  KC_F8,   KC_F9, KC_F11,    KC_F12,
+              _______, _______, NAV_PREV, TAB_PREV, TAB_NEXT, NAV_NEXT,       _______, KC_F4,  KC_F5,   KC_F6, UK_PIPE,   XXXXXXX,
               _______, _______,  _______,  _______,  _______,  _______,       _______, KC_F1,  KC_F2,   KC_F3, TG(_FLIP), _______,
               _______,                     _______,  _______,  _______,       _______, KC_F10, _______,                   _______
     ),
